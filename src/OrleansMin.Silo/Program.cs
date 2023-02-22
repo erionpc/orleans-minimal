@@ -4,7 +4,12 @@ using Microsoft.Extensions.Logging;
 try
 {
     using IHost host = await StartSiloAsync();
-    Console.WriteLine("\n\n Press Enter to terminate...\n\n");
+    
+    Console.WriteLine(
+        $"******** Server ********{Environment.NewLine}{Environment.NewLine}" +
+        "Press Enter to terminate..." +
+        Environment.NewLine);
+
     Console.ReadLine();
 
     await host.StopAsync();

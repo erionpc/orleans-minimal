@@ -17,11 +17,10 @@ public class HelloGrain : Grain, IHello
     ValueTask<string> IHello.SayHello(string greeting)
     {
         _logger.LogInformation(
-            "SayHello message received: greeting = '{Greeting}'", greeting);
+            "{grain}. {method} message received: greeting = '{Greeting}'", 
+            nameof(HelloGrain), nameof(IHello.SayHello), greeting);
 
         return ValueTask.FromResult(
-            @$"
-        Client said: '{greeting}', so HelloGrain says: Hello!
-            ");
+            $"{nameof(HelloGrain)}. Client said: '{greeting}', so I say: Hello!");
     }
 }

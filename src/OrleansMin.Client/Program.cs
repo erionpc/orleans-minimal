@@ -39,7 +39,9 @@ static async Task<IHost> StartClientAsync()
     var host = builder.Build();
     await host.StartAsync();
 
-    Console.WriteLine("Client successfully connected to silo host \n");
+    Console.WriteLine(
+        $"******** Client ********{Environment.NewLine}{Environment.NewLine}" +
+        $".Client successfully connected to silo host{Environment.NewLine}");
 
     return host;
 }
@@ -47,7 +49,10 @@ static async Task<IHost> StartClientAsync()
 static async Task DoClientWorkAsync(IClusterClient client)
 {
     var friend = client.GetGrain<IHello>(0);
-    var response = await friend.SayHello("Good morning, HelloGrain!");
+    var response = await friend.SayHello($"Good morning {nameof(IHello)} Grain!");
 
-    Console.WriteLine($"\n\n{response}\n\n");
+    Console.WriteLine(
+        $"{Environment.NewLine}{Environment.NewLine}" +
+        response +
+        $"{Environment.NewLine}{Environment.NewLine}");
 }
