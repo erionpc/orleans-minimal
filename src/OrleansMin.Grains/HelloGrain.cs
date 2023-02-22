@@ -16,10 +16,6 @@ public class HelloGrain : Grain, IHello
 
     ValueTask<string> IHello.SayHello(string greeting)
     {
-        _logger.LogInformation(
-            "{grain}. {method} message received: greeting = '{Greeting}'", 
-            nameof(HelloGrain), nameof(IHello.SayHello), greeting);
-
         return ValueTask.FromResult(
             $"{nameof(HelloGrain)}. Client said: '{greeting}', so I say: Hello!");
     }
